@@ -1,0 +1,1 @@
+CreateObject("Wscript.Shell").Run "C:\python35\pythonw.exe c:\Users\mdcza\PycharmProjects\EPGuidesParser\main.py", 0, True
