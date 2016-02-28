@@ -5,8 +5,8 @@ import win32api
 import json
 
 
-def message_box(message) -> win32api.MessageBox:
-    return win32api.MessageBox(None, message, "EPGuides")
+def message_box(message, title) -> win32api.MessageBox:
+    return win32api.MessageBox(None, message, title)
 
 
 def get_www(url_in) -> str:
@@ -26,4 +26,4 @@ def get_metadata(series_name) -> dict:
 def days_between(date1, date2) -> int:
     d1 = datetime.strptime(date1, '%Y-%m-%d')
     d2 = datetime.strptime(date2, '%Y-%m-%d')
-    print(abs((d2 - d1).days))
+    return abs((d2 - d1).days)

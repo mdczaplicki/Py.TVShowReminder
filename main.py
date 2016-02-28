@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from locale import getdefaultlocale
 from time import strftime
 from functional import *
@@ -5,7 +6,7 @@ import configparser
 
 
 if __name__ == '__main__':
-    language = getdefaultlocale()
+    language = getdefaultlocale()[0]
     today = strftime('%Y-%m-%d')
     series = {}
     config = configparser.ConfigParser()
@@ -15,13 +16,17 @@ if __name__ == '__main__':
             metadata = get_metadata(show)
             series[show] = {RELEASE_DATE: metadata[RELEASE_DATE],
                             TITLE: metadata['show'][TITLE],
-                            SEASON: metadata[SEASON],
-                            EPISODE: metadata[EPISODE]}
+                            SEASON: str(metadata[SEASON]).rjust(2, '0'),
+                            EPISODE: str(metadata[EPISODE]).rjust(2, '0')}
         file.close()
     del config
+    message = ''
     for show, data in series.items():
-        pass
-    delay = days_between(today, series['the100'][RELEASE_DATE])
-    data = PluralDict({'title': 'ABC', 'season': '01', 'episode': '03', 'days': 2})
-    print(MB_MESSAGE['en_EN'].format_map(data))
-    print(MB_MESSAGE['pl_PL'].format_map(data))
+        release_date = data[RELEASE_DATE]
+        delay = days_between(today, release_date)
+        if delay in [2, 3]:
+            temp = PluralDict({'title': data[TITLE], 'season': data[SEASON],
+                               'episode': data[EPISODE], 'days': delay})
+            temp = MB_MESSAGE[language].format_map(temp)
+            message += temp
+    message_box(message, MB_TITLE[language])

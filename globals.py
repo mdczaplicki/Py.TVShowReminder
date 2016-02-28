@@ -23,7 +23,7 @@ URL_PATTERN = 'https://epguides.frecar.no/show/####/last/'
 
 MB_TITLE = {
     'en_EN': 'TV Show reminder',
-    'pl_PL': 'Przypomnienie o serialu'
+    'pl_PL': 'Przypomnienie o serialu',
 }
 MB_MESSAGE = {
     'en_EN': '{title} s{season}e{episode} has been released {days} day{days(s)} ago.\n',
