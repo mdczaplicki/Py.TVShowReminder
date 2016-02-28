@@ -1,12 +1,12 @@
 from urllib import request, error
 from datetime import datetime
+from easygui import msgbox
 from globals import *
-import win32api
 import json
 
 
-def message_box(message, title) -> win32api.MessageBox:
-    return win32api.MessageBox(None, message, title)
+def message_box(message, title):
+    return msgbox(message, title)
 
 
 def get_www(url_in) -> str:
