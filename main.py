@@ -3,6 +3,7 @@ from locale import getdefaultlocale
 from time import strftime
 from functional import *
 import configparser
+import os
 
 
 if __name__ == '__main__':
@@ -10,7 +11,7 @@ if __name__ == '__main__':
     today = strftime('%Y-%m-%d')
     series = {}
     config = configparser.ConfigParser()
-    with open('series.cfg', 'r') as file:
+    with open(os.path.join(os.path.split(os.path.realpath(__file__))[0], 'series.cfg'), 'r') as file:
         config.read_file(file)
         for show in config.options('series'):
             metadata = get_metadata(show)
