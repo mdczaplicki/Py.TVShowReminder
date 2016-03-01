@@ -30,4 +30,5 @@ if __name__ == '__main__':
                                'episode': data[EPISODE], 'days': delay})
             temp = MB_MESSAGE[language].format_map(temp)
             message += temp
-    message_box(message, MB_TITLE[language])
+    if message:
+        message_box(message, MB_TITLE[language])
